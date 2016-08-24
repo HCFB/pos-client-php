@@ -35,16 +35,22 @@ class Oauth2ClientServiceProvider extends ServiceProvider
                 'client_secret' => 'test_partner_secret',
             ];
 
-            $token = new ClientCredentials($oauth2Client, $config);            
+            $token = new ClientCredentials($oauth2Client, $config);
 
             $refreshToken = new RefreshToken($oauth2Client, $config);
 
             $oauth2 = new Oauth2Subscriber($token, $refreshToken);
 
             $client = new Client([
+                'base_url' => $baseUrl,
                 'defaults' => [
                     'auth' => 'oauth2',
                     'subscribers' => [$oauth2],
+                    'headers' => [
+                        "Accept" => "application/json, application/javascript, text/javascript",
+                        "Content-Type" => "application/json; charset=UTF-8",
+                        "User-Agent" => "Test Partner Backend"
+                    ]
                 ],
             ]);
             return $client;

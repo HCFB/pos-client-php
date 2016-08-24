@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('pos', 'Api\ApiController@show');
+Route::post('applicationCreate', 'Api\ApiController@applicationCreate');
