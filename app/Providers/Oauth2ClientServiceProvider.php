@@ -30,9 +30,9 @@ class Oauth2ClientServiceProvider extends ServiceProvider
             $oauth2Client = new Client(['base_url' => $baseUrl]);
 
             $config = [
-                'token_url' => 'oauth/token',
-                'client_id' => 'test_partner',
-                'client_secret' => 'test_partner_secret',
+                'token_url' => config("custom")["token_url"],
+                'client_id' => config("custom")["client_id"],
+                'client_secret' => config("custom")["client_secret"],
             ];
 
             $token = new ClientCredentials($oauth2Client, $config);
