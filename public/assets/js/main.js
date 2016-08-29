@@ -45,7 +45,9 @@ $("#client-info-form").on("submit", function (ev) {
             "quantity" : $(val).find(".shop-item-number input").val(),
             "weight" : 1
         };
-        items.push(item);
+        if(item.quantity > 0) {
+            items.push(item);
+        }
     });
     data["items"] = items;
     $.ajax({
