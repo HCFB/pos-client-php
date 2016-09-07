@@ -6,7 +6,7 @@
  * Time: 10:22
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 
 class Link

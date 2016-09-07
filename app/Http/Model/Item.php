@@ -6,7 +6,7 @@
  * Time: 14:34
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 
 class Item

@@ -6,7 +6,7 @@
  * Time: 14:31
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 
 class DeliveryAddress

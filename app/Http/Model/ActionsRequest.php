@@ -7,16 +7,16 @@
  * Time: 13:59
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 class ActionsRequest
 {
     /**
-     * @var \App\Model\ClientInfo
+     * @var \App\Http\Model\ClientInfo
      * */
     public $clientInfo;
     /**
-     * @var \App\Model\Order
+     * @var \App\Http\Model\Order
      * */
     public $order;
     /**

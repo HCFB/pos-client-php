@@ -6,10 +6,10 @@
  * Time: 10:19
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 
-class ApplicationResource
+class ApplicationResource extends HasLinks
 {
     /**
      * @var string
@@ -20,11 +20,11 @@ class ApplicationResource
      * */
     public $evidSrv;
     /**
-     * @var \App\Model\ClientInfo
+     * @var \App\Http\Model\ClientInfo
      * */
     public $clientInfo;
     /**
-     * @var \App\Model\Order
+     * @var \App\Http\Model\Order
      * */
     public $order;
     /**
@@ -39,10 +39,6 @@ class ApplicationResource
      * @var string|null
      * */
     public $maxLimit;
-    /**
-     * @var \App\Model\Link[]
-     * */
-    public $_links;
 
     /**
      * @return string
@@ -155,22 +151,4 @@ class ApplicationResource
     {
         $this->maxLimit = $maxLimit;
     }
-
-    /**
-     * @return Link[]
-     */
-    public function getLinks()
-    {
-        return $this->_links;
-    }
-
-    /**
-     * @param Link[] $links
-     */
-    public function setLinks(array $links)
-    {
-        $this->_links = $links;
-    }
-
-
 }

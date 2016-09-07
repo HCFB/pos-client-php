@@ -4,12 +4,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Model\ActionsRequest;
-//use App\Model\ApplicationResponse;
-use App\Model\ClientInfo;
-use App\Model\CreateActionRequest;
-use App\Model\DeliveryAddress;
-use App\Model\Order;
+use App\Http\Model\ActionsRequest;
+use App\Http\Model\ApplicationResponse;
+use App\Http\Model\ClientInfo;
+use App\Http\Model\CreateActionRequest;
+use App\Http\Model\DeliveryAddress;
+use App\Http\Model\Order;
+use App\Utils\CustomMapper;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use \JsonMapper;
@@ -56,10 +57,13 @@ class ApiController extends Controller {
         $options = ["body" => json_encode($request)];
 
         $response = $this->client->post("/e-shop/v1/applications", $options);
-//        $responseObject = $this->mapper->map(
-//            json_decode($response->getBody()),
-//            new ApplicationResponse()
-//        );
+        /** @var ApplicationResponse $responseObject */
+        $responseObject = $this->mapper->map(
+            json_decode($response->getBody()),
+            new ApplicationResponse()
+        );
+
+        CustomMapper::saveToModel($responseObject);
         return (string) $response->getBody();
     }
 
@@ -82,7 +86,7 @@ class ApiController extends Controller {
     }
 
     /**
-     * @param \App\Model\Item[] $items
+     * @param \App\Http\Model\Item[] $items
      * @return float
      */
     private function getOrderSumm(array $items) {

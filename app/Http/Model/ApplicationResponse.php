@@ -6,7 +6,7 @@
  * Time: 10:17
  */
 
-namespace App\Model;
+namespace App\Http\Model;
 
 
 class ApplicationResponse
@@ -16,7 +16,7 @@ class ApplicationResponse
      * */
     public $bankUrl;
     /**
-     * @var \App\Model\ApplicationResource
+     * @var \App\Http\Model\ApplicationResource
      * */
     public $applicationResource;
 
