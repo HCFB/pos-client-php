@@ -24,7 +24,7 @@ class Item
      * */
     public $partnerGoodCatalog;
     /**
-     * @var int
+     * @var double
      * */
     public $price;
     /**
