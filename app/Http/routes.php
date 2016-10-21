@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('front');
 });
 
 Route::post('applicationCreate', 'Api\ApiController@applicationCreate');
