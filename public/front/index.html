@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop example</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/jquery.bootstrap-touchspin.css">
+    <link rel="stylesheet"  href="/assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                    <img src="/assets/images/logo.png">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Список товаров для покупки:</h3>
+                <div class="container shop-container">
+                    <div class="row shop-item">
+                        <div class="col-md-2 shop-item-image">
+                            <img src="/assets/images/television.png"/>
+                        </div>
+                        <div class="col-md-1 shop-item-code"><span class="product-code">0189894</span></div>
+                        <div class="col-md-5 shop-item-name">Телевизор Samsung 6 series</div>
+                        <div class="col-md-1 shop-item-price">30000</div>
+                        <div class="col-md-2 shop-item-number">
+                            <input id="item-1" type="text" value="1" name="item-1" class="spinner">
+                        </div>
+                    </div>
+                    <div class="row shop-item">
+                        <div class="col-md-2 shop-item-image">
+                            <img src="/assets/images/teapot.png"/>
+                        </div>
+                        <div class="col-md-1 shop-item-code"><span class="product-code">1233211</span></div>
+                        <div class="col-md-5 shop-item-name">Чайник Phillips ES123321</div>
+                        <div class="col-md-1 shop-item-price">3000</div>
+                        <div class="col-md-2 shop-item-number">
+                            <input id="item-2" type="text" value="1" name="item-2" class="spinner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <div class="summ-text">
+                    <span class="summ-title">Общая сумма заказа</span>
+                    <span class="summ-number"></span>
+                    <span class="summ-currency"> руб.</span>
+                </div>
+                <button id="credit-button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">ОФормить кредит</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Информация о клиенте</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="client-info-form" method="post">
+                        <div class="form-group">
+                            <label for="name">Имя*:</label>
+                            <input type="text" class="form-control" id="name" name="name"  data-validation="length" data-validation-length="min2">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Фамилия*:</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname"  data-validation="length" data-validation-length="min2">
+                        </div>
+                        <div class="form-group">
+                            <label for="middlename">Отчество:</label>
+                            <input type="text" class="form-control" id="middlename" name="middlename">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">e-mail*:</label>
+                            <input type="email" class="form-control" id="email" name="email" data-validation="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон: (10 цифр начиная с 9)*:</label>
+                            <input type="tel" data-validation="custom" data-validation-regexp="^9\d{9}$" class="form-control" id="phone" name="phone">
+                        </div>
+                        <label for="sex">Выберите пол*:</label>
+                        <br/>
+                        <div class="radio-inline">
+                            <input type="radio" name="sex" value="MALE" data-validation="required">Муж.
+                        </div>
+                        <div class="radio-inline">
+                            <input type="radio" name="sex" value="FEMALE" data-validation="required">Жен.
+                        </div>
+                        <br/>
+                        <label for="address">Выберите адрес доставки*:</label>
+                        <select class="form-control" id="address" name="address" data-validation="required">
+                            <option value=""></option>
+                            <option data-code="A123" value="г. Белгород, ул. 3-го Интернационала, д. 25">г. Белгород, ул. 3-го Интернационала, д. 25</option>
+                            <option data-code="A1223" value="г. Москва, Красная площадь">г. Москва, Красная площадь</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="client-info-form" type="submit" class="btn btn-danger">Перейти к сайту банка</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.bootstrap-touchspin.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <!-- end scripts -->
+</body>
+</html>

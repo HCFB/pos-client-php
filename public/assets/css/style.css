@@ -1,0 +1,26 @@
+.spinner {
+    widht: 40px;
+}
+
+.shop-item {
+    margin: 20px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+.shop-item:nth-child(even) {
+    background: #ededed;
+}
+
+.shop-item-name, .shop-item-image, .shop-item-number, .shop-item-price, .shop-item-code {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.shop-item-image img {
+    max-height: 100px;
+}
+
+.shop-item-image {
+    margin: 5px;
+}
