@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop example</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/jquery.bootstrap-touchspin.css">
+    <link rel="stylesheet"  href="/assets/css/style.css">
+</head>
+<body>
+<div class="container">
+
+</div>
+
+    <script id="order-template" type="text/x-handlebars-template">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                    <img src="/assets/images/logo.png">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h1>Ваш заем подвержден!</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                    </thead>
+                    <tbody>
+                        {{#each items}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{price}}</td>
+                                <td>{{quantity}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <div class="summ-text">
+                    <span class="summ-title">Общая сумма заказа</span>
+                    <span class="summ-number">{{orderSum}}</span>
+                    <span class="summ-currency"> руб.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            Ваши покупки вы можете забрать по адресу: {{deliveryAddress.address}}
+        </div>
+    </script>
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>-->
+    <script src="/assets/js/jquery.form-validator.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.bootstrap-touchspin.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/url.min.js"></script>
+    <script src="/assets/js/handlebars-v4.0.2.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function (el) {
+            var orderID = url("?order");
+            $.get("/order/" + orderID, function (res) {
+                $(".container").html(Handlebars.compile($("#order-template").html())(res));
+            });
+        });
+
+    </script>
+
+    <!-- end scripts -->
+</body>
+</html>

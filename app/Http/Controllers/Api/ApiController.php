@@ -51,8 +51,19 @@ class ApiController extends Controller {
             new CreateActionRequest()
         );
         $request = new ActionsRequest();
-        $request->setShopUrl($_SERVER["HTTP_ORIGIN"]);
-        $request->setOrder($this->generateOrder($contactObject));
+        $order = $this->generateOrder($contactObject);
+        $orderModel = new \App\Models\Order();
+        $orderModel->setAttribute('orderDateComplete', date("Y-m-d H:i:s" ,$order->getOrderDateComplete() / 1000));
+        $orderModel->setAttribute('orderNum',$order->getOrderNum());
+        $orderModel->setAttribute('orderSum',$order->getOrderSum());
+        $orderModel->setAttribute('productCode',$order->getProductCode());
+        $deliveryAddress = new \App\Models\DeliveryAddress((array) $order->getDeliveryAddress());
+        $deliveryAddress->save();
+        $orderModel->deliveryAddress()->associate($deliveryAddress);
+        $orderModel->save();
+        $request->setOrder($order);
+
+        $request->setShopUrl($_SERVER["HTTP_ORIGIN"]. "/accept?order=".$orderModel->getAttribute("id"));
         $request->setClientInfo($this->generateClientInfo($contactObject));
         $options = ["body" => json_encode($request)];
 
@@ -63,10 +74,18 @@ class ApiController extends Controller {
             new ApplicationResponse()
         );
 
-        CustomMapper::saveToModel($responseObject);
+        CustomMapper::saveToModel($responseObject, $orderModel);
         return (string) $response->getBody();
     }
 
+    public function getOrder($orderId) {
+        $order = \App\Models\Order::find($orderId);
+        $order->deliveryAddress;
+        $order->items;
+
+        return response(json_encode($order))
+                    ->header("Content-Type", "application/json");
+    }
     /**
      * @param CreateActionRequest $contactObject
      * @return Order

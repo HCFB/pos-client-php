@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class Application extends Model
     public $bankUrl;
 
     public function applicationResource() {
-        return $this->belongsTo('App\ApplicationResource', 'application_resource_id');
+        return $this->belongsTo('App\Models\ApplicationResource', 'application_resource_id');
     }
 
     /**
