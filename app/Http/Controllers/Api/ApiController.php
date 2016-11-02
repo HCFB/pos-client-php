@@ -67,7 +67,7 @@ class ApiController extends Controller {
         );
 
         CustomMapper::saveToModel($responseObject, $orderModel);
-        return (string) $response->getBody();
+        return response((string) $response->getBody())->header("Content-Type", "application/json");
     }
 
     public function getOrder($orderId) {

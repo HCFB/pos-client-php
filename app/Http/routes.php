@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect('front');
 });
 
-Route::post('applicationCreate', 'Api\ApiController@applicationCreate');
+Route::post('/applicationCreate', 'Api\ApiController@applicationCreate');
 
 Route::get('/order/{orderId}', 'Api\ApiController@getOrder');
 

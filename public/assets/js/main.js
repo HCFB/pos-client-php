@@ -53,7 +53,8 @@ $("#client-info-form").on("submit", function (ev) {
     $.ajax({
         data : JSON.stringify(data),
         method : "post",
-        dataType : "json",
+        dataTYpe : "json",
+        contentType : "application/json",
         url : "/applicationCreate"
     }).done(function (res) {
         console.log(res);
@@ -65,4 +66,38 @@ $("#client-info-form").on("submit", function (ev) {
         console.log(res);
         alert("Произошла ошибка");
     });
+});
+
+function setTestData() {
+    var form = $("#client-info-form");
+    form.find("#name").val("Иван");
+    form.find("#lastname").val("Иванов");
+    form.find("#email").val("mail@mail.ru");
+    form.find("#phone").val("9101231221");
+    form.find("#male").prop('checked', true);
+    form.find("#moscow").prop("selected", true);
+}
+
+$("#error").on("click", function (el) {
+    el.preventDefault();
+    $("#client-info-form").find("#middlename").val("Ошибкович");
+    setTestData();
+});
+
+$("#reject").on("click", function (el) {
+    el.preventDefault();
+    $("#client-info-form").find("#middlename").val("Отказович");
+    setTestData();
+});
+
+$("#approve").on("click", function (el) {
+    el.preventDefault();
+    $("#client-info-form").find("#middlename").val("Иванович");
+    setTestData();
+});
+
+$("#nmd").on("click", function (el) {
+    el.preventDefault();
+    $("#client-info-form").find("#middlename").val("Нидмордатович");
+    setTestData();
 });
