@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +24,7 @@ class Item extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Models\Order');
     }
 
     public function __construct(array $attributes = [])

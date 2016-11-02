@@ -9,31 +9,33 @@
 
 namespace App\Utils;
 
-use App\Application;
-use App\ApplicationResource;
-use App\ClientInfo;
-use App\DeliveryAddress;
+use App\Models\Application;
+use App\Models\ApplicationResource;
+use App\Models\ClientInfo;
+use App\Models\DeliveryAddress;
 use App\Http\Model\ApplicationResponse;
-use App\Item;
-use App\Order;
+use App\Models\Item;
+use App\Models\Order;
 
 class CustomMapper
 {
-    public static function saveToModel(ApplicationResponse $responseObject)
+    public static function saveToModel(ApplicationResponse $responseObject, Order $orderModel)
     {
 
         $clientInfo = new ClientInfo((array)  $responseObject->getApplicationResource()->getClientInfo());
         $clientInfo->save();
 
         $order = new Order();
+        $order->setAttribute("id", $orderModel->getAttribute("id"));
         $order->setAttribute('orderDateComplete', date("Y-m-d H:i:s" ,$responseObject->getApplicationResource()->getOrder()->getOrderDateComplete() / 1000));
         $order->setAttribute('orderNum',$responseObject->getApplicationResource()->getOrder()->getOrderNum());
         $order->setAttribute('orderSum',$responseObject->getApplicationResource()->getOrder()->getOrderSum());
         $order->setAttribute('productCode',$responseObject->getApplicationResource()->getOrder()->getProductCode());
         $deliveryAddress = new DeliveryAddress((array) $responseObject->getApplicationResource()->getOrder()->getDeliveryAddress());
-        $deliveryAddress->save();
+        $deliveryAddress->setAttribute("id", $orderModel->deliveryAddress->id);
+        $deliveryAddress->update();
         $order->deliveryAddress()->associate($deliveryAddress);
-        $order->save();
+        $order->update();
 
         $items = array();
         foreach ($responseObject->getApplicationResource()->getOrder()->getItems() as $item) {

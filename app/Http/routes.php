@@ -11,8 +11,16 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('front');
 });
 
-Route::post('applicationCreate', 'Api\ApiController@applicationCreate');
+Route::post('/applicationCreate', 'Api\ApiController@applicationCreate');
+
+Route::get('/order/{orderId}', 'Api\ApiController@getOrder');
+
+Route::get("/accept", function (Request $request) {
+    return redirect('/front/accept.html?order=' . $request->get("order"));
+});

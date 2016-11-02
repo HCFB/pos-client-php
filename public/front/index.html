@@ -54,7 +54,16 @@
                     <span class="summ-number"></span>
                     <span class="summ-currency"> руб.</span>
                 </div>
-                <button id="credit-button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">ОФормить кредит</button>
+                <div class="btn-group">
+                    <button type="button" id="credit-button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Оформить кредит</button>
+                    <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" aria-expanded="false"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a id="reject" href="#" data-toggle="modal" data-target="#myModal">Получить отказ</a></li>
+                        <li><a id="error" href="#" data-toggle="modal" data-target="#myModal">Получить ошибку</a></li>
+                        <li><a id="nmd" href="#" data-toggle="modal" data-target="#myModal">Получить Need more data</a></li>
+                        <li><a id="approve" href="#" data-toggle="modal" data-target="#myModal">Получить одобрение</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -94,17 +103,17 @@
                         <label for="sex">Выберите пол*:</label>
                         <br/>
                         <div class="radio-inline">
-                            <input type="radio" name="sex" value="MALE" data-validation="required">Муж.
+                            <input id="male" type="radio" name="sex" value="MALE" data-validation="required">Муж.
                         </div>
                         <div class="radio-inline">
-                            <input type="radio" name="sex" value="FEMALE" data-validation="required">Жен.
+                            <input id="female" type="radio" name="sex" value="FEMALE" data-validation="required">Жен.
                         </div>
                         <br/>
                         <label for="address">Выберите адрес доставки*:</label>
                         <select class="form-control" id="address" name="address" data-validation="required">
                             <option value=""></option>
-                            <option data-code="A123" value="г. Белгород, ул. 3-го Интернационала, д. 25">г. Белгород, ул. 3-го Интернационала, д. 25</option>
-                            <option data-code="A1223" value="г. Москва, Красная площадь">г. Москва, Красная площадь</option>
+                            <option id="belgorod" data-code="A123" value="г. Белгород, ул. 3-го Интернационала, д. 25">г. Белгород, ул. 3-го Интернационала, д. 25</option>
+                            <option id="moscow" data-code="A1223" value="г. Москва, Красная площадь">г. Москва, Красная площадь</option>
                         </select>
                     </form>
                 </div>
