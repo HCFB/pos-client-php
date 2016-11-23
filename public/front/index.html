@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-md-1 shop-item-code"><span class="product-code">0189894</span></div>
                         <div class="col-md-5 shop-item-name">Телевизор Samsung 6 series</div>
-                        <div class="col-md-1 shop-item-price">30000</div>
+                        <div class="col-md-1 shop-item-price">10000</div>
                         <div class="col-md-2 shop-item-number">
                             <input id="item-1" type="text" value="1" name="item-1" class="spinner">
                         </div>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-1 shop-item-code"><span class="product-code">1233211</span></div>
                         <div class="col-md-5 shop-item-name">Чайник Phillips ES123321</div>
-                        <div class="col-md-1 shop-item-price">3000</div>
+                        <div class="col-md-1 shop-item-price">2000</div>
                         <div class="col-md-2 shop-item-number">
                             <input id="item-2" type="text" value="1" name="item-2" class="spinner">
                         </div>
@@ -47,22 +47,27 @@
             <div class="col-md-3"></div>
         </div>
         <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">
-                <div class="summ-text">
-                    <span class="summ-title">Общая сумма заказа</span>
-                    <span class="summ-number"></span>
-                    <span class="summ-currency"> руб.</span>
+            <div class="col-md-8"></div>
+            <div class="col-md-4 buttons-example">
+                <div class="row">
+                    <div class="summ-text">
+                        <span class="summ-title">Общая сумма заказа</span>
+                        <span class="summ-number"></span>
+                        <span class="summ-currency"> руб.</span>
+                    </div>
                 </div>
-                <div class="btn-group">
-                    <button type="button" id="credit-button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Оформить кредит</button>
-                    <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" aria-expanded="false"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a id="reject" href="#" data-toggle="modal" data-target="#myModal">Получить отказ</a></li>
-                        <li><a id="error" href="#" data-toggle="modal" data-target="#myModal">Получить ошибку</a></li>
-                        <li><a id="nmd" href="#" data-toggle="modal" data-target="#myModal">Получить Need more data</a></li>
-                        <li><a id="approve" href="#" data-toggle="modal" data-target="#myModal">Получить одобрение</a></li>
-                    </ul>
+                <div class="row">
+                    <button type="button" id="cod-button" data-toggle="modal" data-target="#codModal" class="btn btn-danger">Оплатить при доставке</button>
+                    <div class="btn-group">
+                        <button type="button" id="credit-button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Оформить кредит</button>
+                        <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" aria-expanded="false"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a id="reject" href="#" data-toggle="modal" data-target="#myModal">Получить отказ</a></li>
+                            <li><a id="error" href="#" data-toggle="modal" data-target="#myModal">Получить ошибку</a></li>
+                            <li><a id="nmd" href="#" data-toggle="modal" data-target="#myModal">Получить Need more data</a></li>
+                            <li><a id="approve" href="#" data-toggle="modal" data-target="#myModal">Получить одобрение</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,7 +126,77 @@
                     <button form="client-info-form" type="submit" class="btn btn-danger">Перейти к сайту банка</button>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div id="codModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Информация о клиенте</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="cod-client-info-form" method="post">
+                        <div class="form-group">
+                            <label for="cod-name">Имя*:</label>
+                            <input type="text" class="form-control" id="cod-name" name="firstName"  data-validation="length" data-validation-length="min2">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-lastname">Фамилия*:</label>
+                            <input type="text" class="form-control" id="cod-lastname" name="lastName"  data-validation="length" data-validation-length="min2">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-middlename">Отчество:</label>
+                            <input type="text" class="form-control" id="cod-middlename" name="middleName">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-email">e-mail*:</label>
+                            <input type="email" class="form-control" id="cod-email" name="email" data-validation="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-phone">Телефон: (10 цифр начиная с 9)*:</label>
+                            <input type="tel" data-validation="custom" data-validation-regexp="^9\d{9}$" class="form-control" id="cod-phone" name="phone">
+                        </div>
+                        <hr/>
+                        <div class="form-group">
+                            <label for="cod-address1">Страна*:</label>
+                            <input id="cod-country" class="form-control" type="text" name="country" data-validation="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-address1">Регион*:</label>
+                            <input id="cod-region" class="form-control" type="text" name="region" data-validation="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-address1">Город*:</label>
+                            <input id="cod-city" class="form-control" type="text" name="city" data-validation="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-address1">Адрес доставки*:</label>
+                            <input id="cod-address1" class="form-control" type="text" name="address1" data-validation="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-address2">Резервный адрес*:</label>
+                            <input id="cod-address2" class="form-control" type="text" name="address2" data-validation="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="cod-address2">Индекс*:</label>
+                            <input id="cod-postcode" class="form-control" type="text" name="postcode" data-validation="required">
+                        </div>
+
+                        <label for="address">Служба доставки*:</label>
+                        <select class="form-control" id="shippingCompanyId" name="shippingCompanyId" data-validation="required">
+                            <option value=""></option>
+                            <option id="SPSR" value="SPSR">SPSR</option>
+                            <!--<option id="rogaIKopyta" value="rogaIKopyta">Рога и копыта</option>-->
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="cod-client-info-form" type="submit" class="btn btn-danger">Перейти к сайту банка</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -24,3 +24,5 @@ Route::get('/order/{orderId}', 'Api\ApiController@getOrder');
 Route::get("/accept", function (Request $request) {
     return redirect('/front/accept.html?order=' . $request->get("order"));
 });
+
+Route::post('offerCreate', 'Api\CashOnDeliveryController@createOffer');

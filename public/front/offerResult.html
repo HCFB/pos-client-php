@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop example</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/jquery.bootstrap-touchspin.css">
+    <link rel="stylesheet"  href="/assets/css/style.css">
+</head>
+<body>
+<div class="container">
+
+</div>
+
+<script id="order-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="logo">
+                <img src="/assets/images/logo.png">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h1>Ваша заказ {{result}}!</h1>
+        <table class="table table-bordered">
+            <thead>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+            </thead>
+            <tbody>
+            {{#each cartItems}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{amount}}</td>
+                <td>{{quantity}}</td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            <div class="summ-text">
+                <span class="summ-title">Общая сумма заказа</span>
+                <span class="summ-number">{{goodsPrice}}</span>
+                <span class="summ-currency"> руб.</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        Ваши покупки будут доставлены по адресу: {{codDeliveryAddress.country}}, {{codDeliveryAddress.region}}, {{codDeliveryAddress.city}}, {{codDeliveryAddress.address1}}
+    </div>
+</script>
+
+<!-- scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/jquery.form-validator.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.bootstrap-touchspin.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/url.min.js"></script>
+<script src="/assets/js/handlebars-v4.0.2.js"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+        renderPage();
+    });
+
+    function renderPage() {
+        var offer = url("?offerId");
+        var status;
+        switch (url("?result")) {
+            case "success" :
+                status = "получил одобрение";
+                break;
+            case "fail" :
+                status = "был отменен";
+                break;
+        }
+        $.get("/offer/" + offer, function (res) {
+            res.result = status;
+            $(".container").html(Handlebars.compile($("#order-template").html())(res));
+        });
+    }
+
+</script>
+
+<!-- end scripts -->
+</body>
+</html>

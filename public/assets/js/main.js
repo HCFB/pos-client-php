@@ -7,7 +7,7 @@ $(".spinner").TouchSpin({
     width: 40
 });
 
-$(".spinner").change(function (ev) {
+$(".spinner").change(function () {
     $(".summ-number").text(getSumm());
 });
 
@@ -67,6 +67,46 @@ $("#client-info-form").on("submit", function (ev) {
         alert("Произошла ошибка");
     });
 });
+
+$("#cod-client-info-form").on("submit", function (el) {
+    el.preventDefault();
+    if(getSumm() > 35000) { //mock limit
+        alert("Сумма покупок должна быть меньше 35000");
+        return;
+    }
+    var data = {};
+    $(this).serializeArray().map(function(x){data[x.name] = x.value;});
+    var items = [];
+    $.each($(".shop-item"), function (key, val) {
+        var item = {
+            name : $(val).find(".shop-item-name").text(),
+            itemPrice :
+            { amount : $(val).find(".shop-item-price").text(), currency : "RUR" },
+            category : "LENOVO_TEST_CATEGORY",
+            quantity : $(val).find(".shop-item-number input").val(),
+            weight : 10,
+            seller : "lenovo_test_seller"
+        };
+        if(item.quantity > 0) {
+            items.push(item);
+        }
+    });
+    data["items"] = items;
+
+    $.ajax({
+        method : "post",
+        url : "/offerCreate",
+        data : JSON.stringify(data),
+        dataTYpe : "json",
+        contentType : "application/json"
+    }).done(function (res) {
+        console.log(res);
+        if(res.rel == "REDIRECT_URL") {
+            window.location.href = res.href;
+        }
+    });
+});
+
 
 function setTestData() {
     var form = $("#client-info-form");
