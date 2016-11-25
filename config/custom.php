@@ -11,4 +11,6 @@ return [
     'token_url' => 'oauth/token',
     'client_id' => 'test_partner',
     'client_secret' => 'test_partner_secret',
+    'cod_client_id' => 'lenovo_test',
+    'cod_client_secret' => 'lenovo_test_secret',
 ];

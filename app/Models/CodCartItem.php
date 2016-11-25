@@ -22,11 +22,17 @@ class CodCartItem extends Model
     public $category;
     public $weight;
 
+    public function offer()
+    {
+        return $this->belongsTo('App\Models\CodOffer');
+    }
+
     public function __construct(array $attributes = [])
     {
         parent::__construct();
         foreach ($attributes as $key => $val) {
-            $this->setAttribute($key, $val);
+            if(array_key_exists($key, get_class_vars(get_class($this))))
+                $this->setAttribute($key, $val);
         }
     }
 }

@@ -29,7 +29,7 @@
                 <th>Количество</th>
             </thead>
             <tbody>
-            {{#each cartItems}}
+            {{#each cod_cart_items}}
             <tr>
                 <td>{{name}}</td>
                 <td>{{amount}}</td>
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="row">
-        Ваши покупки будут доставлены по адресу: {{codDeliveryAddress.country}}, {{codDeliveryAddress.region}}, {{codDeliveryAddress.city}}, {{codDeliveryAddress.address1}}
+        Ваши покупки будут доставлены по адресу: {{cod_delivery_address.country}}, {{cod_delivery_address.region}}, {{cod_delivery_address.city}}, {{cod_delivery_address.address1}}
     </div>
 </script>
 

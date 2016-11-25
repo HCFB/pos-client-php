@@ -12,11 +12,11 @@ class CodUserInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('cod_user_info', function (Blueprint $table) {
+        Schema::create('cod_user_infos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstName', 255);
             $table->string('lastName', 255);
-            $table->string('middleMame', 255);
+            $table->string('middleName', 255);
             $table->string('email', 255);
             $table->string('phone', 20);
 

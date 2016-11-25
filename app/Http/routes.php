@@ -26,3 +26,9 @@ Route::get("/accept", function (Request $request) {
 });
 
 Route::post('offerCreate', 'Api\CashOnDeliveryController@createOffer');
+
+Route::get("/offer/{method}/{offerId}", function ($method, $offerId) {
+    return redirect("/front/offerResult.html?result=" . $method . "&offerId=" . $offerId);
+});
+
+Route::get("/offer/{offerId}", 'Api\CashOnDeliveryController@getOffer');

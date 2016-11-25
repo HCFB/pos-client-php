@@ -14,7 +14,6 @@ class CodOffersTable extends Migration
     {
         Schema::create('cod_offers', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('createDate')->nullable();
             $table->string('remoteId', 255)->nullable();
             $table->dateTime('validTo')->nullable();
             $table->string('status', 20)->nullable();

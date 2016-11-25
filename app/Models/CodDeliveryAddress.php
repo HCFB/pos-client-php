@@ -24,8 +24,9 @@ class CodDeliveryAddress extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct();
-        foreach ($attributes as $key => $val)
-            $this->setAttribute($key, $val);
+        foreach ($attributes as $key => $val) {
+            if(array_key_exists($key, get_class_vars(get_class($this))))
+                $this->setAttribute($key, $val);
+        }
     }
-
 }

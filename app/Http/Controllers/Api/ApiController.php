@@ -88,7 +88,7 @@ class ApiController extends Controller {
         $address->setAddress($contactObject->getAddress());
         $address->setCode($contactObject->getCode());
         $order->setDeliveryAddress($address);
-        $order->setOrderNum(rand(1000000000, 9999999999)); /* for example */
+        $order->setOrderNum(rand(10000000, 99999999)); /* for example */
         $order->setProductCode("0-0-12");
         $order->setOrderDateComplete(date("Y-m-d"));
         $order->setOrderSum($this->getOrderSumm($contactObject->getItems()));
