@@ -17,9 +17,9 @@ Route::get('/', function () {
     return redirect('front');
 });
 
-Route::post('/applicationCreate', 'Api\ApiController@applicationCreate');
+Route::post('/applicationCreate', 'Api\PosOnlineController@applicationCreate');
 
-Route::get('/order/{orderId}', 'Api\ApiController@getOrder');
+Route::get('/order/{orderId}', 'Api\PosOnlineController@getOrder');
 
 Route::get("/accept", function (Request $request) {
     return redirect('/front/accept.html?order=' . $request->get("order"));

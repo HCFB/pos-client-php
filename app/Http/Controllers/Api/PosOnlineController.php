@@ -11,11 +11,11 @@ use App\Http\Model\CreateActionRequest;
 use App\Http\Model\DeliveryAddress;
 use App\Http\Model\Order;
 use App\Utils\CustomMapper;
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use \JsonMapper;
+use Illuminate\Http\Request;
+use JsonMapper;
 
-class ApiController extends Controller {
+class PosOnlineController extends Controller {
 
     protected $client;
     protected $mapper;

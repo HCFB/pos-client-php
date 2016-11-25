@@ -2,9 +2,6 @@
 
 namespace App\Http\Model\CashOnDelivery;
 
-use FiveLab\Component\ModelTransformer\Annotation\Object;
-use FiveLab\Component\ModelTransformer\Annotation\Property;
-
 /**
  * Class Price
  * @package App\Http\Model\CashOnDelivery 
@@ -32,5 +29,35 @@ class Price {
         return $instance;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
+    /**
+     * @param mixed $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
 }

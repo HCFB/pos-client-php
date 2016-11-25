@@ -11,20 +11,19 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Model\CashOnDelivery\DeliveryAddress;
 use App\Http\Model\CashOnDelivery\Dto\ItemDTO;
+use App\Http\Model\CashOnDelivery\Dto\OfferCreateDTO;
 use App\Http\Model\CashOnDelivery\OfferRequest;
 use App\Http\Model\CashOnDelivery\OfferResponse;
 use App\Http\Model\CashOnDelivery\Price;
 use App\Models\CodCartItem;
-use App\Models\CodUserInfo;
 use App\Models\CodDeliveryAddress;
+use App\Models\CodOffer;
+use App\Models\CodUserInfo;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
-use App\Models\CodOffer;
 use Illuminate\Support\Facades\Log;
 use JsonMapper;
-use App\Http\Model\CashOnDelivery\Dto\OfferCreateDTO;
-
 
 
 class CashOnDeliveryController extends Controller {
@@ -130,8 +129,8 @@ class CashOnDeliveryController extends Controller {
         $items = array();
         foreach ($offerCreateDTO->items as $item) {
             $newItem = new CodCartItem((array) $item);
-            $newItem->setAttribute("amount", $item->getItemPrice()->amount);
-            $newItem->setAttribute("currency", $item->getItemPrice()->currency);
+            $newItem->setAttribute("amount", $item->getItemPrice()->getAmount());
+            $newItem->setAttribute("currency", $item->getItemPrice()->getCurrency());
             $newItem->offer()->associate($offer);
             $items[] = $newItem;
         }
@@ -150,7 +149,7 @@ class CashOnDeliveryController extends Controller {
          */
         $result = 0;
         foreach($items as $item) {
-            $result += $item->getQuantity() * $item->getItemPrice()->amount;
+            $result += $item->getQuantity() * $item->getItemPrice()->getAmount();
         }
         return $result;
     }
