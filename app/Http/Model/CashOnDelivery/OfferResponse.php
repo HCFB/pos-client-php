@@ -4,7 +4,7 @@ namespace App\Http\Model\CashOnDelivery;
 
 class OfferResponse {
     /**
-     * @var integer
+     * @var string
      */
     public $id;
     /**
@@ -37,7 +37,7 @@ class OfferResponse {
     public $links;
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -45,7 +45,7 @@ class OfferResponse {
     }
 
     /**
-     * @param int $id
+     * @param string $id
      */
     public function setId($id)
     {

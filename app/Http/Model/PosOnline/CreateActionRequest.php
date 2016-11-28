@@ -6,7 +6,7 @@
  * Time: 9:23
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class CreateActionRequest
@@ -44,7 +44,7 @@ class CreateActionRequest
      * */
     public $sex;
     /**
-     * @var \App\Http\Model\Item[]
+     * @var \App\Http\Model\PosOnline\Item[]
      * */
     public $items;
 

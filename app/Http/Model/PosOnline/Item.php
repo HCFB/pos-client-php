@@ -6,7 +6,7 @@
  * Time: 14:34
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class Item

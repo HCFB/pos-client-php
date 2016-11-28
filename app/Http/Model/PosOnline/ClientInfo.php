@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class ClientInfo

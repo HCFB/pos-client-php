@@ -6,13 +6,13 @@
  * Time: 10:12
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class HasLinks
 {
     /**
-     * @var \App\Http\Model\Link[]
+     * @var \App\Http\Model\PosOnline\Link[]
      * */
     public $_links;
 

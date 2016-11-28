@@ -6,7 +6,7 @@
  * Time: 14:31
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class DeliveryAddress

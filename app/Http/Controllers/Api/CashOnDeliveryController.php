@@ -9,9 +9,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Model\CashOnDelivery\ChangeOfferRequest;
+use App\Http\Model\CashOnDelivery\ChangeOfferResponse;
 use App\Http\Model\CashOnDelivery\DeliveryAddress;
 use App\Http\Model\CashOnDelivery\Dto\ItemDTO;
 use App\Http\Model\CashOnDelivery\Dto\OfferCreateDTO;
+use App\Http\Model\CashOnDelivery\ErrorResponse;
 use App\Http\Model\CashOnDelivery\OfferRequest;
 use App\Http\Model\CashOnDelivery\OfferResponse;
 use App\Http\Model\CashOnDelivery\Price;
@@ -95,6 +98,37 @@ class CashOnDeliveryController extends Controller {
         return response(json_encode($offer))
             ->header("Content-Type", "application/json");
 
+    }
+    
+    public function changeOffer($offerId, Request $request) {
+        /**
+         * @var CodOffer
+         */
+        $offer = CodOffer::find($offerId);
+        $jsonArray = json_decode(trim(stripslashes(html_entity_decode($request->getContent()))));
+
+        $offerRes = $this->client->get("/CashOnDelivery/v1/offers/" . $offer->getAttribute("remoteId"));
+        $offerRes = $this->mapper->map(json_decode($offerRes->getBody()), new OfferResponse());
+        if($offerRes->getStatus() == "signed") {
+            try {
+                $changeOfferRequest = $this->mapper->map($jsonArray, new ChangeOfferRequest());
+                $statusChange = $this->client->put("/CashOnDelivery/v1/offers/" . $offer->getAttribute("remoteId"),
+                    ["body" => json_encode($changeOfferRequest)]);
+                $changeResponse = $this->mapper->map(json_decode($statusChange->getBody()), new ChangeOfferResponse());
+                $offer->setAttribute("status", $changeOfferRequest->getStatus());
+                $offer->save();
+            } catch (RequestException $ex) {
+                Log::warning($ex->getResponse()->getBody());
+                throw $ex;
+            }
+            return response(json_encode($changeResponse))
+                ->header("Content-Type", "application/json");
+        } else {
+            $offer->setAttribute("status", $offerRes->getStatus());
+            $offer->save();
+            return response(json_encode(new ErrorResponse("Нет подтвержденного клиентом заказа с таким id: " . $offer->getAttribute("remoteId"))), 403)
+                ->header("Content-Type", "application/json");
+        }
     }
 
 

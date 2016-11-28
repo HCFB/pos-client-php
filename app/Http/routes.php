@@ -32,3 +32,5 @@ Route::get("/offer/{method}/{offerId}", function ($method, $offerId) {
 });
 
 Route::get("/offer/{offerId}", 'Api\CashOnDeliveryController@getOffer');
+
+Route::put("/offer/{offerId}", 'Api\CashOnDeliveryController@changeOffer');

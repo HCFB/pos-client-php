@@ -7,16 +7,16 @@
  * Time: 13:59
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 class ActionsRequest
 {
     /**
-     * @var \App\Http\Model\ClientInfo
+     * @var \App\Http\Model\PosOnline\ClientInfo
      * */
     public $clientInfo;
     /**
-     * @var \App\Http\Model\Order
+     * @var \App\Http\Model\PosOnline\Order
      * */
     public $order;
     /**

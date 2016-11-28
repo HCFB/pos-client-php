@@ -6,13 +6,13 @@
  * Time: 10:01
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class OrderChangeRequest
 {
     /**
-     * @var \App\Http\Model\Order
+     * @var \App\Http\Model\PosOnline\Order
      */
     public $newOrder;
 }

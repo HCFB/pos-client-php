@@ -6,7 +6,7 @@
  * Time: 11:54
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class ChangeStatusRequest

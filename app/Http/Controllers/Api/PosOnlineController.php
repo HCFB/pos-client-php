@@ -4,12 +4,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Model\ActionsRequest;
-use App\Http\Model\ApplicationResponse;
-use App\Http\Model\ClientInfo;
-use App\Http\Model\CreateActionRequest;
-use App\Http\Model\DeliveryAddress;
-use App\Http\Model\Order;
+use App\Http\Model\PosOnline\ActionsRequest;
+use App\Http\Model\PosOnline\ApplicationResponse;
+use App\Http\Model\PosOnline\ClientInfo;
+use App\Http\Model\PosOnline\CreateActionRequest;
+use App\Http\Model\PosOnline\DeliveryAddress;
+use App\Http\Model\PosOnline\Order;
 use App\Utils\CustomMapper;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -124,7 +124,7 @@ class PosOnlineController extends Controller {
     }
 
     /**
-     * @param \App\Http\Model\Item[] $items
+     * @param \App\Http\Model\PosOnline\Item[] $items
      * @return float
      */
     private function getOrderSumm(array $items) {

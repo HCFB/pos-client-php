@@ -6,7 +6,7 @@
  * Time: 10:21
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class ApplicationInformationResponse extends ApplicationResource

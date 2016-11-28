@@ -50,8 +50,17 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        Ваши покупки будут доставлены по адресу: {{cod_delivery_address.country}}, {{cod_delivery_address.region}}, {{cod_delivery_address.city}}, {{cod_delivery_address.address1}}
+    <div id="address-row" class="row">
+        Ваши покупки
+        {{#if show}}
+        {{else}} НЕ {{/if}}
+        будут доставлены по адресу: {{cod_delivery_address.country}}, {{cod_delivery_address.region}}, {{cod_delivery_address.city}}, {{cod_delivery_address.address1}}
+    </div>
+    <div id="button-row" class="row">
+        {{#if show}}
+        <button type="button" id="cod-accept-button" class="btn btn-success">Подтверждение оплаты клиентом</button>
+        <button type="button" id="cod-cancel-button" class="btn btn-danger">Отменить заказ</button>
+        {{/if}}
     </div>
 </script>
 
@@ -68,21 +77,65 @@
         renderPage();
     });
 
+    $(document).on("click", "#cod-accept-button", acceptOffer);
+    $(document).on("click", "#cod-cancel-button", cancelOffer);
+
+
     function renderPage() {
         var offer = url("?offerId");
         var status;
+        var show;
         switch (url("?result")) {
             case "success" :
                 status = "получил одобрение";
+                show = 1;
                 break;
             case "fail" :
                 status = "был отменен";
+                show = 0;
+                break;
+            case "approved" :
+                status = "доставлен";
                 break;
         }
         $.get("/offer/" + offer, function (res) {
             res.result = status;
+            res.show = show;
             $(".container").html(Handlebars.compile($("#order-template").html())(res));
         });
+    }
+
+    function acceptOffer() {
+        var offer = url("?offerId");
+        $.ajax({
+            url : "/offer/" + offer,
+            type : "PUT",
+            dataType: 'json',
+            contentType : "application/json",
+            data : JSON.stringify({"status" : "approved"})
+        }).done(function () {
+            $('#address-row').remove();
+            $("#button-row").html("Продукты доставлены!");
+        }).fail(function (res) {
+            $("#button-row").html(res.responseJSON.message);
+        });
+    }
+
+    function cancelOffer() {
+        var offer = url("?offerId");
+        $.ajax({
+            url : "/offer/" + offer,
+            type : "PUT",
+            dataType: 'json',
+            contentType : "application/json",
+            data : JSON.stringify({"status" : "canceled"})
+        }).done(function () {
+            $("#address-row").remove();
+            $("#button-row").html("Ваша заявка отменена!");
+        }).fail(function (res) {
+            $("#button-row").html(res.responseJSON.message);
+        });
+
     }
 
 </script>

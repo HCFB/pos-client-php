@@ -6,17 +6,17 @@
  * Time: 14:34
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class Order
 {
     /**
-     * @var \App\Http\Model\DeliveryAddress
+     * @var \App\Http\Model\PosOnline\DeliveryAddress
      * */
     public $deliveryAddress;
     /**
-     * @var \App\Http\Model\Item[]
+     * @var \App\Http\Model\PosOnline\Item[]
      * */
     public $items;
     /**

@@ -6,7 +6,7 @@
  * Time: 10:19
  */
 
-namespace App\Http\Model;
+namespace App\Http\Model\PosOnline;
 
 
 class ApplicationResource extends HasLinks
@@ -20,11 +20,11 @@ class ApplicationResource extends HasLinks
      * */
     public $evidSrv;
     /**
-     * @var \App\Http\Model\ClientInfo
+     * @var \App\Http\Model\PosOnline\ClientInfo
      * */
     public $clientInfo;
     /**
-     * @var \App\Http\Model\Order
+     * @var \App\Http\Model\PosOnline\Order
      * */
     public $order;
     /**
