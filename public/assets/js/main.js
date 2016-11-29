@@ -21,6 +21,7 @@ function getSumm() {
 
 $(document).ready(function (doc) {
     $(".summ-number").text(getSumm());
+    $("#cod-phone").val(Math.floor(100000000 + Math.random() * 900000000) + 9000000000);
 });
 
 $.validate({lang : "ru"});
