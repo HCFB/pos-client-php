@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop example</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/jquery.bootstrap-touchspin.css">
+    <link rel="stylesheet"  href="/assets/css/style.css">
+</head>
+<body>
+<div class="container">
+
+</div>
+
+<script id="order-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="logo">
+                <img src="/assets/images/logo.png">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h1>Ваша заказ {{result}}!</h1>
+        <table class="table table-bordered">
+            <thead>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+            </thead>
+            <tbody>
+            {{#each cod_cart_items}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{amount}}</td>
+                <td>{{quantity}}</td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+            <div class="summ-text">
+                <span class="summ-title">Общая сумма заказа</span>
+                <span class="summ-number">{{goodsPrice}}</span>
+                <span class="summ-currency"> руб.</span>
+            </div>
+        </div>
+    </div>
+    <div id="address-row" class="row">
+        Ваши покупки
+        {{#if show}}
+        {{else}} НЕ {{/if}}
+        будут доставлены по адресу: {{cod_delivery_address.country}}, {{cod_delivery_address.region}}, {{cod_delivery_address.city}}, {{cod_delivery_address.address1}}
+    </div>
+    <div id="button-row" class="row">
+        {{#if show}}
+        <button type="button" id="cod-accept-button" class="btn btn-success">Подтверждение оплаты клиентом</button>
+        <button type="button" id="cod-cancel-button" class="btn btn-danger">Отменить заказ</button>
+        {{/if}}
+    </div>
+</script>
+
+<!-- scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/jquery.form-validator.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.bootstrap-touchspin.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/url.min.js"></script>
+<script src="/assets/js/handlebars-v4.0.2.js"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+        renderPage();
+    });
+
+    $(document).on("click", "#cod-accept-button", acceptOffer);
+    $(document).on("click", "#cod-cancel-button", cancelOffer);
+
+
+    function renderPage() {
+        var offer = url("?offerId");
+        var status;
+        var show;
+        switch (url("?result")) {
+            case "success" :
+                status = "получил одобрение";
+                show = 1;
+                break;
+            case "fail" :
+                status = "был отменен";
+                show = 0;
+                break;
+            case "approved" :
+                status = "доставлен";
+                break;
+        }
+        $.get("/offer/" + offer, function (res) {
+            res.result = status;
+            res.show = show;
+            $(".container").html(Handlebars.compile($("#order-template").html())(res));
+        });
+    }
+
+    function acceptOffer() {
+        var offer = url("?offerId");
+        $.ajax({
+            url : "/offer/" + offer,
+            type : "PUT",
+            dataType: 'json',
+            contentType : "application/json",
+            data : JSON.stringify({"status" : "approved"})
+        }).done(function () {
+            $('#address-row').remove();
+            $("#button-row").html("Продукты доставлены!");
+        }).fail(function (res) {
+            $("#button-row").html(res.responseJSON.message);
+        });
+    }
+
+    function cancelOffer() {
+        var offer = url("?offerId");
+        $.ajax({
+            url : "/offer/" + offer,
+            type : "PUT",
+            dataType: 'json',
+            contentType : "application/json",
+            data : JSON.stringify({"status" : "canceled"})
+        }).done(function () {
+            $("#address-row").remove();
+            $("#button-row").html("Ваша заявка отменена!");
+        }).fail(function (res) {
+            $("#button-row").html(res.responseJSON.message);
+        });
+
+    }
+
+</script>
+
+<!-- end scripts -->
+</body>
+</html>

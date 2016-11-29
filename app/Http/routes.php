@@ -17,10 +17,20 @@ Route::get('/', function () {
     return redirect('front');
 });
 
-Route::post('/applicationCreate', 'Api\ApiController@applicationCreate');
+Route::post('/applicationCreate', 'Api\PosOnlineController@applicationCreate');
 
-Route::get('/order/{orderId}', 'Api\ApiController@getOrder');
+Route::get('/order/{orderId}', 'Api\PosOnlineController@getOrder');
 
 Route::get("/accept", function (Request $request) {
     return redirect('/front/accept.html?order=' . $request->get("order"));
 });
+
+Route::post('offerCreate', 'Api\CashOnDeliveryController@createOffer');
+
+Route::get("/offer/{method}/{offerId}", function ($method, $offerId) {
+    return redirect("/front/offerResult.html?result=" . $method . "&offerId=" . $offerId);
+});
+
+Route::get("/offer/{offerId}", 'Api\CashOnDeliveryController@getOffer');
+
+Route::put("/offer/{offerId}", 'Api\CashOnDeliveryController@changeOffer');

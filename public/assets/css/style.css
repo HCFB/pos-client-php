@@ -24,3 +24,12 @@
 .shop-item-image {
     margin: 5px;
 }
+
+.buttons-example {
+    float: right;
+}
+
+.summ-text {
+    float: right;
+    margin-right: 30px;
+}

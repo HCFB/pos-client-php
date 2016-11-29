@@ -158,6 +158,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\Oauth2ClientServiceProvider::class,
+        App\Providers\CodOauth2ClientServiceProvider::class,
         App\Providers\ConfigServiceProvider::class
 
     ],

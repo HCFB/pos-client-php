@@ -9,11 +9,11 @@
 
 namespace App\Utils;
 
+use App\Http\Model\PosOnline\ApplicationResponse;
 use App\Models\Application;
 use App\Models\ApplicationResource;
 use App\Models\ClientInfo;
 use App\Models\DeliveryAddress;
-use App\Http\Model\ApplicationResponse;
 use App\Models\Item;
 use App\Models\Order;
 
