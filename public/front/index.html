@@ -86,12 +86,12 @@
                 <div class="modal-body">
                     <form id="client-info-form" method="post">
                         <div class="form-group">
-                            <label for="name">Имя*:</label>
-                            <input type="text" class="form-control" id="name" name="name"  data-validation="length" data-validation-length="min2">
-                        </div>
-                        <div class="form-group">
                             <label for="lastname">Фамилия*:</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"  data-validation="length" data-validation-length="min2">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Имя*:</label>
+                            <input type="text" class="form-control" id="name" name="name"  data-validation="length" data-validation-length="min2">
                         </div>
                         <div class="form-group">
                             <label for="middlename">Отчество:</label>
@@ -140,20 +140,20 @@
                 <div class="modal-body">
                     <form id="cod-client-info-form" method="post">
                         <div class="form-group">
-                            <label for="cod-name">Имя*:</label>
-                            <input type="text" class="form-control" id="cod-name" name="firstName"  data-validation="length" data-validation-length="min2">
+                            <label for="cod-lastname">Фамилия*:</label>
+                            <input value="Иванов" type="text" class="form-control" id="cod-lastname" name="lastName"  data-validation="length" data-validation-length="min2">
                         </div>
                         <div class="form-group">
-                            <label for="cod-lastname">Фамилия*:</label>
-                            <input type="text" class="form-control" id="cod-lastname" name="lastName"  data-validation="length" data-validation-length="min2">
+                            <label for="cod-name">Имя*:</label>
+                            <input value="Иван" type="text" class="form-control" id="cod-name" name="firstName"  data-validation="length" data-validation-length="min2">
                         </div>
                         <div class="form-group">
                             <label for="cod-middlename">Отчество:</label>
-                            <input type="text" class="form-control" id="cod-middlename" name="middleName">
+                            <input value="Иванович" type="text" class="form-control" id="cod-middlename" name="middleName">
                         </div>
                         <div class="form-group">
                             <label for="cod-email">e-mail*:</label>
-                            <input type="email" class="form-control" id="cod-email" name="email" data-validation="email">
+                            <input value="email@email.com" type="email" class="form-control" id="cod-email" name="email" data-validation="email">
                         </div>
                         <div class="form-group">
                             <label for="cod-phone">Телефон: (10 цифр начиная с 9)*:</label>
@@ -162,33 +162,33 @@
                         <hr/>
                         <div class="form-group">
                             <label for="cod-address1">Страна*:</label>
-                            <input id="cod-country" class="form-control" type="text" name="country" data-validation="required">
+                            <input value="Россия" id="cod-country" class="form-control" type="text" name="country" data-validation="required">
                         </div>
                         <div class="form-group">
                             <label for="cod-address1">Регион*:</label>
-                            <input id="cod-region" class="form-control" type="text" name="region" data-validation="required">
+                            <input value="Московская область" id="cod-region" class="form-control" type="text" name="region" data-validation="required">
                         </div>
                         <div class="form-group">
                             <label for="cod-address1">Город*:</label>
-                            <input id="cod-city" class="form-control" type="text" name="city" data-validation="required">
+                            <input value="Москва" id="cod-city" class="form-control" type="text" name="city" data-validation="required">
                         </div>
                         <div class="form-group">
                             <label for="cod-address1">Адрес доставки*:</label>
-                            <input id="cod-address1" class="form-control" type="text" name="address1" data-validation="required">
+                            <input value="Красная площадь" id="cod-address1" class="form-control" type="text" name="address1" data-validation="required">
                         </div>
                         <div class="form-group">
                             <label for="cod-address2">Резервный адрес*:</label>
-                            <input id="cod-address2" class="form-control" type="text" name="address2" data-validation="required">
+                            <input value="Нет" id="cod-address2" class="form-control" type="text" name="address2" data-validation="required">
                         </div>
                         <div class="form-group">
                             <label for="cod-address2">Индекс*:</label>
-                            <input id="cod-postcode" class="form-control" type="text" name="postcode" data-validation="required">
+                            <input value="121500" id="cod-postcode" class="form-control" type="text" name="postcode" data-validation="required">
                         </div>
 
                         <label for="address">Служба доставки*:</label>
                         <select class="form-control" id="shippingCompanyId" name="shippingCompanyId" data-validation="required">
                             <option value=""></option>
-                            <option id="SPSR" value="SPSR">SPSR</option>
+                            <option selected="true" id="SPSR" value="SPSR">SPSR</option>
                             <!--<option id="rogaIKopyta" value="rogaIKopyta">Рога и копыта</option>-->
                         </select>
                     </form>
