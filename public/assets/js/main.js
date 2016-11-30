@@ -119,26 +119,28 @@ function setTestData() {
     form.find("#moscow").prop("selected", true);
 }
 
-$("#error").on("click", function (el) {
+$(".pos-sample").on("click", function (el) {
     el.preventDefault();
-    $("#client-info-form").find("#middlename").val("Ошибкович");
     setTestData();
-});
-
-$("#reject").on("click", function (el) {
-    el.preventDefault();
-    $("#client-info-form").find("#middlename").val("Отказович");
-    setTestData();
-});
-
-$("#approve").on("click", function (el) {
-    el.preventDefault();
-    $("#client-info-form").find("#middlename").val("Иванович");
-    setTestData();
-});
-
-$("#nmd").on("click", function (el) {
-    el.preventDefault();
-    $("#client-info-form").find("#middlename").val("Нидмордатович");
-    setTestData();
+    if($(this).attr("id").includes("base")) {
+        $("#client-info-form").find("#lastname").val("Базовский");
+    }
+    switch ($(this).attr("id")) {
+        case "error":
+        case "base-error":
+            $("#client-info-form").find("#middlename").val("Ошибкович");
+            break;
+        case "reject":
+        case "base-reject":
+            $("#client-info-form").find("#middlename").val("Отказович");
+            break;
+        case "approve":
+        case "base-approve":
+            $("#client-info-form").find("#middlename").val("Иванович");
+            break;
+        case "nmd":
+        case "base-nmd":
+            $("#client-info-form").find("#middlename").val("Нидмордатович");
+            break;
+    }
 });
